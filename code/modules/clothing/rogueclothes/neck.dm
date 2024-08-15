@@ -1,18 +1,21 @@
 /obj/item/clothing/neck/roguetown
-	name = "necklace"
-	desc = ""
+	name = "translucent necklace" // Invisible lmao
+	desc = "A worthless, imperceptible trinket. You feel as if you should <i>report</i> seeing this."
 	icon = 'icons/roguetown/clothing/neck.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/neck.dmi'
 	bloody_icon_state = "bodyblood"
 
+
 /obj/item/clothing/neck/roguetown/coif
 	name = "coif"
+	desc = "A crude, simple garment. Thick enough to shield from exposure to the elements."
 	icon_state = "coif"
 	item_state = "coif"
-	flags_inv = HIDEEARS|HIDEHAIR
-	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
+
+	flags_inv = HIDEEARS | HIDEHAIR
+	slot_flags = ITEM_SLOT_NECK | ITEM_SLOT_HEAD
+	body_parts_covered = NECK | HAIR | EARS | HEAD
 	blocksound = SOFTHIT
-	body_parts_covered = NECK|HAIR|EARS|HEAD
 	armor = list("blunt" = 33, "slash" = 12, "stab" = 22, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
 	adjustable = CAN_CADJUST
@@ -41,61 +44,36 @@
 					H.update_inv_head()
 
 
-
-/obj/item/clothing/neck/roguetown/chaincoif
-	name = "chain coif"
+/obj/item/clothing/neck/roguetown/coif/chain
+	name = "chain coif" // Indistinguishable from one another until you examine them
+	desc = "A sturdy mesh forged from steel. Lightweight, but durable headwear."
 	icon_state = "chaincoif"
 	item_state = "chaincoif"
-	flags_inv = HIDEEARS|HIDEHAIR
-	armor = list("blunt" = 30, "slash" = 60, "stab" = 45, "bullet" = 10, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
+	armor = list("blunt" = 30, "slash" = 60, "stab" = 45, "bullet" = 10, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	max_integrity = 200
 	resistance_flags = FIRE_PROOF
-	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
-	body_parts_covered = NECK|HAIR|EARS|HEAD
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
-	adjustable = CAN_CADJUST
-	toggle_icon_state = TRUE
 	blocksound = CHAINHIT
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 
-/obj/item/clothing/neck/roguetown/chaincoif/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = null
-			body_parts_covered = NECK
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_neck()
-				H.update_inv_head()
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDEEARS|HIDEHAIR
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_neck()
-					H.update_inv_head()
-
-
-/obj/item/clothing/neck/roguetown/chaincoif/iron
+/obj/item/clothing/neck/roguetown/coif/chain/iron
+	desc = "A sturdy mesh forged from iron. "
 	icon_state = "ichaincoif"
+
+	max_integrity = 150
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
-	max_integrity = 150
 
 /obj/item/clothing/neck/roguetown/bervor
 	name = "bervor"
 	icon_state = "bervor"
+
 	flags_inv = HIDEFACIALHAIR
 	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "bullet" = 100, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
-
 	max_integrity = 300
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK
